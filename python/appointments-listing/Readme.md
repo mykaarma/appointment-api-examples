@@ -14,7 +14,6 @@ The code then iterates through the appointments of the day, and also enriches th
 # Scopes Needed
 - `appointment.get`, at the department level.
 - `manage.dealerassociate.read`, at the department level
-- 
 
 # Authentication
 - save creds in mkauth.py (created by making a copy of mkauth.py.sample). Do NOT commit this file.
