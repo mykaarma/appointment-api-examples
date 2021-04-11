@@ -29,6 +29,8 @@ import pprint
 # Global, set to true by the parser if needed
 DEBUG = False
 SIMULATION = False
+# cache for users. For re-use
+USER_CACHE = dict()
 
 def prettyprint(message, width=280):
     '''pretty prints the text'''
@@ -42,11 +44,21 @@ def debug_print(message):
 
 def get_dealer_associate_info(dept_uid,dealer_associate_uuid):
     """Gets the details of a given dealer associate"""
+    global USER_CACHE
     debug_print("getting DA for UUID %s" % dealer_associate_uuid)
     if dealer_associate_uuid == None:
         return None
     else:
-        return kmanagecore.get_dealer_associate_info(manage_creds, dept_uid, dealer_associate_uuid, DEBUG = DEBUG, SIMULATION = SIMULATION)
+        #check cache
+        if dealer_associate_uuid in USER_CACHE:
+            debug_print("cache hit for %s" % dealer_associate_uuid)
+            return USER_CACHE[dealer_associate_uuid]
+        else:
+            debug_print("cache miss for %s" % dealer_associate_uuid)
+            found_da = kmanagecore.get_dealer_associate_info(manage_creds, dept_uid, dealer_associate_uuid, DEBUG = DEBUG, SIMULATION = SIMULATION)
+            if found_da != None:
+                USER_CACHE[dealer_associate_uuid] = found_da
+            return found_da
 
 
 def list_appointments(dept_uid, date_str):

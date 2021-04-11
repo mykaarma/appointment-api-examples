@@ -3,7 +3,7 @@ This repository contains sample applications built upon the myKaarma platform, s
 
 # License
 ```
-Copyright 2020 myKaarma
+Copyright 2021 myKaarma
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
