@@ -1,0 +1,6 @@
+# ignore the auth file
+mkauth.py
+# ignore the data, in CSVs
+*.csv
+# ignore Logs
+*.log
